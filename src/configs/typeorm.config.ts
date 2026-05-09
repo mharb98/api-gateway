@@ -1,17 +1,17 @@
 import 'reflect-metadata';
-import 'dotenv/config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Environment } from '../environment';
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = Environment.NODE_ENV === 'production';
 
 const baseConfig: DataSourceOptions = {
   type: 'postgres',
-  host: process.env.DB_HOST ?? 'localhost',
-  port: parseInt(process.env.DB_PORT ?? '5432', 10),
-  username: process.env.DB_USERNAME ?? 'postgres',
-  password: process.env.DB_PASSWORD ?? 'postgres',
-  database: process.env.DB_NAME ?? 'api_gateway',
+  host: Environment.DB_HOST,
+  port: parseInt(Environment.DB_PORT, 10),
+  username: Environment.DB_USERNAME,
+  password: Environment.DB_PASSWORD,
+  database: Environment.DB_NAME,
   synchronize: false,
   logging: isProduction ? false : ['query', 'error'],
   entities: isProduction
