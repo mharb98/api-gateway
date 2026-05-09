@@ -22,7 +22,7 @@ export class Environment {
   @Variable('PORT', '3000')
   static readonly PORT: string;
 
-  @Variable('NODE_ENV', 'development')
+  @Variable('NODE_ENV')
   static readonly NODE_ENV: string;
 
   @Variable('DB_HOST', 'localhost')
@@ -31,12 +31,12 @@ export class Environment {
   @Variable('DB_PORT', '5432')
   static readonly DB_PORT: string;
 
-  @Variable('DB_USERNAME', 'postgres')
+  @Variable('DB_USERNAME')
   static readonly DB_USERNAME: string;
 
   @Variable('DB_PASSWORD')
   static readonly DB_PASSWORD: string;
 
-  @Variable('DB_NAME', 'api_gateway')
+  @Variable('DB_NAME')
   static readonly DB_NAME: string;
 }
