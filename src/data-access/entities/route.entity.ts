@@ -18,6 +18,7 @@ export const HttpMethod = {
   OPTIONS: 'OPTIONS',
   HEAD: 'HEAD',
 } as const;
+
 export type HttpMethod = (typeof HttpMethod)[keyof typeof HttpMethod];
 
 @Entity('routes')

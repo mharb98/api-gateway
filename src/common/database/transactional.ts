@@ -1,31 +1,19 @@
-import { DataSource, EntityManager } from 'typeorm';
+import { getDataSource } from '../../data-access/transaction/datasource-accessor';
+import {
+  getTransactionManager,
+  setTransactionManager,
+} from '../../data-access/transaction/cls-accessor';
 
-type IsolationLevel =
-  | 'READ UNCOMMITTED'
-  | 'READ COMMITTED'
-  | 'REPEATABLE READ'
-  | 'SERIALIZABLE';
+export const TransactionIsolationLevel = {
+  READ_UNCOMMITTED: 'READ UNCOMMITTED',
+  READ_COMMITTED: 'READ COMMITTED',
+  REPEATABLE_READ: 'REPEATABLE READ',
+  SERIALIZABLE: 'SERIALIZABLE',
+} as const;
 
-export enum TransactionIsolationLevel {
-  READ_UNCOMMITTED = 'READ UNCOMMITTED',
-  READ_COMMITTED = 'READ COMMITTED',
-  REPEATABLE_READ = 'REPEATABLE READ',
-  SERIALIZABLE = 'SERIALIZABLE',
-}
+export type TransactionIsolationLevel =
+  (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
-/**
- * Wraps the decorated method in a TypeORM transaction.
- *
- * The class using this decorator MUST inject DataSource:
- *   @InjectDataSource() private readonly dataSource: DataSource
- *
- * The transactional EntityManager is injected as the last argument.
- * Declare it as an optional last parameter to support nested reuse:
- *   async createUser(dto: CreateUserDto, manager?: EntityManager): Promise<User>
- *
- * When calling a @Transactional method from another @Transactional method,
- * pass the manager explicitly to reuse the outer transaction (avoids deadlocks).
- */
 export function Transactional(
   isolationLevel?: TransactionIsolationLevel,
 ): MethodDecorator {
@@ -34,28 +22,24 @@ export function Transactional(
     _propertyKey: string | symbol,
     descriptor: PropertyDescriptor,
   ): PropertyDescriptor {
-    const originalMethod = descriptor.value as (
-      ...args: unknown[]
-    ) => Promise<unknown>;
+    const original = descriptor.value as (...args: unknown[]) => Promise<unknown>;
 
     descriptor.value = async function (
-      this: { dataSource: DataSource },
+      this: object,
       ...args: unknown[]
     ): Promise<unknown> {
-      const lastArg = args[args.length - 1];
-      if (lastArg instanceof EntityManager) {
-        return originalMethod.apply(this, args);
+      // REQUIRED semantics — reuse existing transaction if active
+      if (getTransactionManager()) {
+        return original.apply(this, args);
       }
 
-      const queryRunner = this.dataSource.createQueryRunner();
+      const queryRunner = getDataSource().createQueryRunner();
       await queryRunner.connect();
       await queryRunner.startTransaction(isolationLevel);
+      setTransactionManager(queryRunner.manager);
 
       try {
-        const result = await originalMethod.apply(this, [
-          ...args,
-          queryRunner.manager,
-        ]);
+        const result = await original.apply(this, args);
         await queryRunner.commitTransaction();
         return result;
       } catch (error) {
@@ -63,6 +47,7 @@ export function Transactional(
         throw error;
       } finally {
         await queryRunner.release();
+        setTransactionManager(undefined);
       }
     };
 
