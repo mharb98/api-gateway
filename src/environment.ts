@@ -39,4 +39,13 @@ export class Environment {
 
   @Variable('DB_NAME')
   static readonly DB_NAME: string;
+
+  @Variable('REDIS_HOST', 'localhost')
+  static readonly REDIS_HOST: string;
+
+  @Variable('REDIS_PORT', '6379')
+  static readonly REDIS_PORT: string;
+
+  @Variable('REDIS_PASSWORD', '')
+  static readonly REDIS_PASSWORD: string;
 }
