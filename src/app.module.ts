@@ -8,6 +8,7 @@ import { clsConfig } from './configs/cls.config';
 import { typeOrmConfig } from './configs/typeorm.config';
 import { DataAccessModule } from './data-access/data-access.module';
 import { RedisModule } from './redis/redis.module';
+import { RoutingModule } from './routing/routing.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RedisModule } from './redis/redis.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     DataAccessModule,
     RedisModule,
+    RoutingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
