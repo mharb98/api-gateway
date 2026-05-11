@@ -3,8 +3,8 @@ import type { RuntimeRoute } from '../types/runtime-route.type';
 
 function makeRoute(overrides: Partial<RuntimeRoute> = {}): RuntimeRoute {
   return {
-    id: 'test-id',
-    serviceId: 'svc-id',
+    uid: 'test-uid',
+    serviceId: 'svc-uid',
     serviceName: 'test-service',
     serviceProtocol: 'http',
     host: null,
@@ -103,7 +103,7 @@ describe('RouteTrie', () => {
       expect(trie.match('/api/v1/users/123')!.route).toBe(route);
     });
 
-    it('returns null when only the wildcard prefix itself is matched (no trailing segments)', () => {
+    it('returns null when only the wildcard prefix itself is matched', () => {
       trie.insert('/api/*', makeRoute({ pathPattern: '/api/*' }));
       expect(trie.match('/api')).toBeNull();
     });
@@ -117,41 +117,41 @@ describe('RouteTrie', () => {
 
   describe('match priority', () => {
     it('static child beats param child at the same depth', () => {
-      const paramRoute = makeRoute({ pathPattern: '/users/:id', id: 'param-route' });
-      const staticRoute = makeRoute({ pathPattern: '/users/profile', id: 'static-route' });
+      const paramRoute = makeRoute({ pathPattern: '/users/:id', uid: 'param-route' });
+      const staticRoute = makeRoute({ pathPattern: '/users/profile', uid: 'static-route' });
       trie.insert('/users/:id', paramRoute);
       trie.insert('/users/profile', staticRoute);
       const result = trie.match('/users/profile');
-      expect(result!.route.id).toBe('static-route');
+      expect(result!.route.uid).toBe('static-route');
     });
 
     it('param child beats wildcard at the same depth', () => {
-      const wildcardRoute = makeRoute({ pathPattern: '/api/*', id: 'wildcard-route' });
-      const paramRoute = makeRoute({ pathPattern: '/api/:version', id: 'param-route' });
+      const wildcardRoute = makeRoute({ pathPattern: '/api/*', uid: 'wildcard-route' });
+      const paramRoute = makeRoute({ pathPattern: '/api/:version', uid: 'param-route' });
       trie.insert('/api/*', wildcardRoute);
       trie.insert('/api/:version', paramRoute);
       const result = trie.match('/api/v2');
-      expect(result!.route.id).toBe('param-route');
+      expect(result!.route.uid).toBe('param-route');
     });
 
     it('higher-priority route wins among same-path same-method routes', () => {
-      const low = makeRoute({ pathPattern: '/users/:id', id: 'low', priority: 1 });
-      const high = makeRoute({ pathPattern: '/users/:id', id: 'high', priority: 10 });
+      const low = makeRoute({ pathPattern: '/users/:id', uid: 'low', priority: 1 });
+      const high = makeRoute({ pathPattern: '/users/:id', uid: 'high', priority: 10 });
       trie.insert('/users/:id', low);
       trie.insert('/users/:id', high);
       const result = trie.match('/users/42');
-      expect(result!.route.id).toBe('high');
+      expect(result!.route.uid).toBe('high');
     });
   });
 
   describe('backtracking', () => {
     it('falls back to param when static child leads to dead end', () => {
-      const paramRoute = makeRoute({ pathPattern: '/a/:b/c', id: 'param' });
-      const staticRoute = makeRoute({ pathPattern: '/a/x', id: 'static-dead-end' });
+      const paramRoute = makeRoute({ pathPattern: '/a/:b/c', uid: 'param' });
+      const staticRoute = makeRoute({ pathPattern: '/a/x', uid: 'static-dead-end' });
       trie.insert('/a/:b/c', paramRoute);
       trie.insert('/a/x', staticRoute);
       const result = trie.match('/a/x/c');
-      expect(result!.route.id).toBe('param');
+      expect(result!.route.uid).toBe('param');
       expect(result!.params).toEqual({ b: 'x' });
     });
   });

@@ -3,7 +3,7 @@ import { ServiceInstance } from '../../src/data-access/entities/service-instance
 
 export async function seedServiceInstances(
   dataSource: DataSource,
-  serviceMap: Map<string, string>,
+  serviceMap: Map<string, number>,
 ): Promise<void> {
   const repo = dataSource.getRepository(ServiceInstance);
 

@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { Service, ServiceProtocol } from '../../src/data-access/entities/service.entity';
 
-export async function seedServices(dataSource: DataSource): Promise<Map<string, string>> {
+export async function seedServices(dataSource: DataSource): Promise<Map<string, number>> {
   const repo = dataSource.getRepository(Service);
 
   const services = await repo.save([

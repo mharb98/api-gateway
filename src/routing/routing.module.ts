@@ -8,6 +8,6 @@ import { RouteMatcherService } from './services/route-matcher.service';
 @Module({
   imports: [DataAccessModule],
   providers: [MethodRouterService, RouteLoaderService, RouteMatcherService, PathRewriterService],
-  exports: [RouteMatcherService, PathRewriterService],
+  exports: [RouteMatcherService, PathRewriterService, RouteLoaderService],
 })
 export class RoutingModule {}

@@ -2,14 +2,14 @@ import type { HttpMethod } from '../../data-access/entities/route.entity';
 import type { ServiceProtocol } from '../../data-access/entities/service.entity';
 
 export interface RuntimeInstance {
-  id: string;
+  uid: string;
   host: string;
   port: number;
   weight: number;
 }
 
 export interface RuntimeRoute {
-  id: string;
+  uid: string;
   serviceId: string;
   serviceName: string;
   serviceProtocol: ServiceProtocol;

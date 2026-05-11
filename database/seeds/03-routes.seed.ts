@@ -3,7 +3,7 @@ import { Route, HttpMethod } from '../../src/data-access/entities/route.entity';
 
 export async function seedRoutes(
   dataSource: DataSource,
-  serviceMap: Map<string, string>,
+  serviceMap: Map<string, number>,
 ): Promise<void> {
   const repo = dataSource.getRepository(Route);
   const userId = serviceMap.get('user-service')!;

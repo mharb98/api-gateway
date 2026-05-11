@@ -1,22 +1,12 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { Service } from './service.entity';
+import { BaseEntity } from './base.entity';
 
 @Entity('service_instances')
-export class ServiceInstance {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class ServiceInstance extends BaseEntity {
   @Index()
-  @Column({ name: 'service_id', type: 'uuid' })
-  serviceId: string;
+  @Column({ name: 'service_id', type: 'int' })
+  serviceId: number;
 
   @Column({ type: 'varchar', length: 255 })
   host: string;
@@ -30,9 +20,6 @@ export class ServiceInstance {
   @Index()
   @Column({ name: 'is_healthy', type: 'boolean', default: true })
   isHealthy: boolean;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
 
   @ManyToOne(() => Service, (service) => service.instances, {
     onDelete: 'CASCADE',

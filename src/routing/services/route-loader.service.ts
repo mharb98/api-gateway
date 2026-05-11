@@ -32,15 +32,15 @@ export class RouteLoaderService implements OnApplicationBootstrap {
         AppLogger.error({
           title: 'RouteLoader',
           severity: LogSeverity.LOW,
-          exception: `Route "${route.pathPattern}" (id: ${route.id}) skipped — no healthy instances for service "${route.service.name}"`,
+          exception: `Route "${route.pathPattern}" (uid: ${route.uid}) skipped — no healthy instances for service "${route.service.name}"`,
         });
         skipped++;
         continue;
       }
 
       const runtimeRoute: RuntimeRoute = {
-        id: route.id,
-        serviceId: route.serviceId,
+        uid: route.uid,
+        serviceId: route.service.uid,
         serviceName: route.service.name,
         serviceProtocol: route.service.protocol,
         host: route.host,
@@ -49,7 +49,7 @@ export class RouteLoaderService implements OnApplicationBootstrap {
         stripPrefix: route.stripPrefix,
         priority: route.priority,
         instances: instances.map((inst) => ({
-          id: inst.id,
+          uid: inst.uid,
           host: inst.host,
           port: inst.port,
           weight: inst.weight,

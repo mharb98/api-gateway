@@ -9,6 +9,7 @@ import { typeOrmConfig } from './configs/typeorm.config';
 import { DataAccessModule } from './data-access/data-access.module';
 import { RedisModule } from './redis/redis.module';
 import { RoutingModule } from './routing/routing.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { RoutingModule } from './routing/routing.module';
     DataAccessModule,
     RedisModule,
     RoutingModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],

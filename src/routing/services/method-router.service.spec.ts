@@ -3,8 +3,8 @@ import type { RuntimeRoute } from '../types/runtime-route.type';
 
 function makeRoute(overrides: Partial<RuntimeRoute> = {}): RuntimeRoute {
   return {
-    id: 'id',
-    serviceId: 'svc',
+    uid: 'uid',
+    serviceId: 'svc-uid',
     serviceName: 'svc',
     serviceProtocol: 'http',
     host: null,

@@ -1,12 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { ServiceInstance } from './service-instance.entity';
 import { Route } from './route.entity';
+import { BaseEntity } from './base.entity';
 
 export const ServiceProtocol = {
   HTTP: 'http',
@@ -17,18 +12,12 @@ export const ServiceProtocol = {
 export type ServiceProtocol = (typeof ServiceProtocol)[keyof typeof ServiceProtocol];
 
 @Entity('services')
-export class Service {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
+export class Service extends BaseEntity {
   @Column({ type: 'varchar', length: 100, unique: true })
   name: string;
 
   @Column({ type: 'varchar', length: 10, default: ServiceProtocol.HTTP })
   protocol: ServiceProtocol;
-
-  @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
 
   @OneToMany(() => ServiceInstance, (instance) => instance.service)
   instances: ServiceInstance[];
