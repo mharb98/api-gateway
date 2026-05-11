@@ -21,7 +21,9 @@
     "migration:generate": "node scripts/migration-generate.js",
     "migration:create": "node scripts/migration-create.js",
     "migration:run": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:run -d src/configs/typeorm.config.ts",
-    "migration:revert": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:revert -d src/configs/typeorm.config.ts"
+    "migration:revert": "cross-env TS_NODE_PROJECT=tsconfig.typeorm.json typeorm-ts-node-commonjs migration:revert -d src/configs/typeorm.config.ts",
+    "seed:run": "node scripts/seed.js",
+    "db:reset": "node scripts/seed.js --reset"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
