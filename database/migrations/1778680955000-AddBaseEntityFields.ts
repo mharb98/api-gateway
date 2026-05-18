@@ -2,6 +2,13 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class AddBaseEntityFields1778680955000 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    // Skip if AddUidColumn migration already applied these changes
+    const existing = await queryRunner.query(`
+      SELECT column_name FROM information_schema.columns
+      WHERE table_name = 'services' AND column_name = 'uid'
+    `);
+    if (existing.length > 0) return;
+
     // ── 1. Drop existing FK constraints that reference the old UUID PKs ──────
     const routeFkRows: { constraint_name: string }[] = await queryRunner.query(`
       SELECT constraint_name FROM information_schema.table_constraints

@@ -40,6 +40,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/testing", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:11.1.19"],\
           ["@nestjs/typeorm", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:11.0.1"],\
           ["@types/express", "npm:5.0.6"],\
+          ["@types/http-proxy", "npm:1.17.17"],\
           ["@types/jest", "npm:30.0.0"],\
           ["@types/node", "npm:24.12.3"],\
           ["@types/pg", "npm:8.20.0"],\
@@ -53,6 +54,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-prettier", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:10.1.8"],\
           ["eslint-plugin-prettier", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:5.5.5"],\
           ["globals", "npm:17.6.0"],\
+          ["http-proxy", "npm:1.18.1"],\
           ["ioredis", "npm:5.10.1"],\
           ["jest", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:30.4.2"],\
           ["nestjs-cls", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:6.2.0"],\
@@ -2746,6 +2748,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/http-proxy", [\
+      ["npm:1.17.17", {\
+        "packageLocation": "../../../.yarn/berry/cache/@types-http-proxy-npm-1.17.17-c7bb35dd45-10c0.zip/node_modules/@types/http-proxy/",\
+        "packageDependencies": [\
+          ["@types/http-proxy", "npm:1.17.17"],\
+          ["@types/node", "npm:25.6.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/istanbul-lib-coverage", [\
       ["npm:2.0.6", {\
         "packageLocation": "../../../.yarn/berry/cache/@types-istanbul-lib-coverage-npm-2.0.6-2ea31fda9c-10c0.zip/node_modules/@types/istanbul-lib-coverage/",\
@@ -3841,6 +3853,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/testing", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:11.1.19"],\
           ["@nestjs/typeorm", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:11.0.1"],\
           ["@types/express", "npm:5.0.6"],\
+          ["@types/http-proxy", "npm:1.17.17"],\
           ["@types/jest", "npm:30.0.0"],\
           ["@types/node", "npm:24.12.3"],\
           ["@types/pg", "npm:8.20.0"],\
@@ -3854,6 +3867,7 @@ const RAW_RUNTIME_STATE =
           ["eslint-config-prettier", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:10.1.8"],\
           ["eslint-plugin-prettier", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:5.5.5"],\
           ["globals", "npm:17.6.0"],\
+          ["http-proxy", "npm:1.18.1"],\
           ["ioredis", "npm:5.10.1"],\
           ["jest", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:30.4.2"],\
           ["nestjs-cls", "virtual:142c23a86e7d1f8f21c16e78639c496707a0b5b621a5fb010d8b77b3d8f05f6a78570ba9485236bc07c64057189c2b6821352adf780ae137ddd2183db0ebf7bd#npm:6.2.0"],\
@@ -5365,6 +5379,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["eventemitter3", [\
+      ["npm:4.0.7", {\
+        "packageLocation": "../../../.yarn/berry/cache/eventemitter3-npm-4.0.7-7afcdd74ae-10c0.zip/node_modules/eventemitter3/",\
+        "packageDependencies": [\
+          ["eventemitter3", "npm:4.0.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["events", [\
       ["npm:3.3.0", {\
         "packageLocation": "../../../.yarn/berry/cache/events-npm-3.3.0-c280bc7e48-10c0.zip/node_modules/events/",\
@@ -5632,6 +5655,28 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/flatted-npm-3.4.2-e32280259b-10c0.zip/node_modules/flatted/",\
         "packageDependencies": [\
           ["flatted", "npm:3.4.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["follow-redirects", [\
+      ["npm:1.16.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/follow-redirects-npm-1.16.0-816e4f62d9-10c0.zip/node_modules/follow-redirects/",\
+        "packageDependencies": [\
+          ["follow-redirects", "npm:1.16.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:a313c479c5c7e54d9ec8fbeeea69ff640f56b8989ea2dff42351a3fa5c4061fb80a52d8ede0f0826a181a216820c2d2c3f15da881e7fdf31cef1c446e42f0c45#npm:1.16.0", {\
+        "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-a545b80559/4/.yarn/berry/cache/follow-redirects-npm-1.16.0-816e4f62d9-10c0.zip/node_modules/follow-redirects/",\
+        "packageDependencies": [\
+          ["@types/debug", null],\
+          ["debug", null],\
+          ["follow-redirects", "virtual:a313c479c5c7e54d9ec8fbeeea69ff640f56b8989ea2dff42351a3fa5c4061fb80a52d8ede0f0826a181a216820c2d2c3f15da881e7fdf31cef1c446e42f0c45#npm:1.16.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/debug",\
+          "debug"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6038,6 +6083,18 @@ const RAW_RUNTIME_STATE =
           ["setprototypeof", "npm:1.2.0"],\
           ["statuses", "npm:2.0.2"],\
           ["toidentifier", "npm:1.0.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["http-proxy", [\
+      ["npm:1.18.1", {\
+        "packageLocation": "../../../.yarn/berry/cache/http-proxy-npm-1.18.1-a313c479c5-10c0.zip/node_modules/http-proxy/",\
+        "packageDependencies": [\
+          ["eventemitter3", "npm:4.0.7"],\
+          ["follow-redirects", "virtual:a313c479c5c7e54d9ec8fbeeea69ff640f56b8989ea2dff42351a3fa5c4061fb80a52d8ede0f0826a181a216820c2d2c3f15da881e7fdf31cef1c446e42f0c45#npm:1.16.0"],\
+          ["http-proxy", "npm:1.18.1"],\
+          ["requires-port", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -8233,6 +8290,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../.yarn/berry/cache/require-from-string-npm-2.0.2-8557e0db12-10c0.zip/node_modules/require-from-string/",\
         "packageDependencies": [\
           ["require-from-string", "npm:2.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["requires-port", [\
+      ["npm:1.0.0", {\
+        "packageLocation": "../../../.yarn/berry/cache/requires-port-npm-1.0.0-fd036b488a-10c0.zip/node_modules/requires-port/",\
+        "packageDependencies": [\
+          ["requires-port", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\

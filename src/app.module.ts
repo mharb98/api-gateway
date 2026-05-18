@@ -10,6 +10,7 @@ import { DataAccessModule } from './data-access/data-access.module';
 import { RedisModule } from './redis/redis.module';
 import { RoutingModule } from './routing/routing.module';
 import { AdminModule } from './admin/admin.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AdminModule } from './admin/admin.module';
     RedisModule,
     RoutingModule,
     AdminModule,
+    GatewayModule,
   ],
   controllers: [AppController],
   providers: [AppService],
