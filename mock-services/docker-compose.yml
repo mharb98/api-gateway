@@ -1,0 +1,99 @@
+name: gateway-lab
+
+networks:
+  gateway-lab:
+    driver: bridge
+    name: gateway-lab
+
+# ── Shared defaults ───────────────────────────────────────────────────────────
+x-service: &service
+  build:
+    context: .
+    dockerfile: Dockerfile
+  restart: unless-stopped
+  networks:
+    - gateway-lab
+  environment:
+    NODE_ENV: development
+  healthcheck:
+    test:
+      - CMD
+      - node
+      - -e
+      - "require('http').get('http://localhost:3000/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
+    interval: 10s
+    timeout: 5s
+    retries: 3
+    start_period: 10s
+
+# ── Services ──────────────────────────────────────────────────────────────────
+services:
+
+  # ── Users ─────────────────────────────────────────────────────────────────
+  users-1:
+    <<: *service
+    container_name: users-1
+    ports:
+      - "3001:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: users
+      INSTANCE_NAME: users-1
+      PORT: 3000
+
+  users-2:
+    <<: *service
+    container_name: users-2
+    ports:
+      - "3002:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: users
+      INSTANCE_NAME: users-2
+      PORT: 3000
+
+  # ── Orders ────────────────────────────────────────────────────────────────
+  orders-1:
+    <<: *service
+    container_name: orders-1
+    ports:
+      - "3003:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: orders
+      INSTANCE_NAME: orders-1
+      PORT: 3000
+
+  orders-2:
+    <<: *service
+    container_name: orders-2
+    ports:
+      - "3004:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: orders
+      INSTANCE_NAME: orders-2
+      PORT: 3000
+
+  # ── Payments ──────────────────────────────────────────────────────────────
+  payments-1:
+    <<: *service
+    container_name: payments-1
+    ports:
+      - "3005:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: payments
+      INSTANCE_NAME: payments-1
+      PORT: 3000
+
+  payments-2:
+    <<: *service
+    container_name: payments-2
+    ports:
+      - "3006:3000"
+    environment:
+      NODE_ENV: development
+      SERVICE_NAME: payments
+      INSTANCE_NAME: payments-2
+      PORT: 3000

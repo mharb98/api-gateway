@@ -1,0 +1,15 @@
+{
+  "name": "mock-service",
+  "version": "1.0.0",
+  "description": "Lightweight mock microservice for API Gateway local testing",
+  "main": "src/service.js",
+  "scripts": {
+    "start": "node src/service.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
